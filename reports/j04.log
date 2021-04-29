@@ -1,0 +1,64 @@
+Traceback (most recent call last):
+  File "c:\users\andrea\anaconda3\lib\site-packages\jupyter_cache\executors\utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "c:\users\andrea\anaconda3\lib\asyncio\base_events.py", line 584, in run_until_complete
+    return future.result()
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\client.py", line 554, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "c:\users\andrea\anaconda3\lib\site-packages\nbclient\client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# basic
+import sys
+import os
+
+# common
+import numpy as np
+import pandas as pd
+import xarray as xr
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+from sklearn.cluster import KMeans
+import pickle
+from mpl_toolkits.basemap import Basemap
+
+#lib
+from lib.calibration import *
+from lib.predictor_definition_building import *
+from lib.PCA_predictor_sst_mld import PCA_EstelaPred_sea_mask, Plot_EOFs_EstelaPred, standardise_predictor_prep
+from lib.mda import Normalize, DeNormalize
+from lib.plots_kma import plot_3D_kmeans, plot_scatter_kmeans, plot_grid_kmeans
+from lib.plots_base import basemap_ibtracs, basemap_var, basemap_scatter, axplot_basemap, basemap_scatter_both
+from lib.plots_dwts import colorp, custom_colorp, Plot_DWTs_Mean_Anom, Plot_DWTs_totalmean,\
+Plot_Probs_WT_WT, Plot_Probs_WT_WT_anomaly, Plot_Probs_WT_WT_WT, Plot_DWTs_Probs, \
+Report_Sim_oneyear, Report_Sim, Plot_DWTs_counts, Chrono_dwts_tcs, Chrono_probs_tcs, Plot_dwts_colormap
+from lib.plots_tcs import get_storm_color, get_category, Plot_DWTs_tracks
+from lib.plots_aux import data_to_discret, colors_dwt
+from lib.extract_tcs import Extract_Rectangle, dwt_tcs_count, dwt_tcs_count_tracks
+
+import warnings
+warnings.filterwarnings('ignore')
+from IPython.display import Image
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[1;32m<ipython-input-1-fba630d070b3>[0m in [0;36m<module>[1;34m[0m
+[0;32m     14[0m [1;33m[0m[0m
+[0;32m     15[0m [1;31m#lib[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
+[1;32m---> 16[1;33m [1;32mfrom[0m [0mlib[0m[1;33m.[0m[0mcalibration[0m [1;32mimport[0m [1;33m*[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m     17[0m [1;32mfrom[0m [0mlib[0m[1;33m.[0m[0mpredictor_definition_building[0m [1;32mimport[0m [1;33m*[0m[1;33m[0m[1;33m[0m[0m
+[0;32m     18[0m [1;32mfrom[0m [0mlib[0m[1;33m.[0m[0mPCA_predictor_sst_mld[0m [1;32mimport[0m [0mPCA_EstelaPred_sea_mask[0m[1;33m,[0m [0mPlot_EOFs_EstelaPred[0m[1;33m,[0m [0mstandardise_predictor_prep[0m[1;33m[0m[1;33m[0m[0m
+
+[1;31mModuleNotFoundError[0m: No module named 'lib.calibration'
+ModuleNotFoundError: No module named 'lib.calibration'
+

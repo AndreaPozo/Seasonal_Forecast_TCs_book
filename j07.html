@@ -1,0 +1,619 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>7. Seasonal Forecast</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="6. Model Validation" href="j06.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logobm.png" class="logo" alt="logo">
+  
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="j01.html">
+   <font color="navy">
+    1. Databases
+   </font>
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="j02.html">
+   <font color="navy">
+    <strong>
+     2. Large Scale Predictors
+    </strong>
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="j03.html">
+   <font color="navy">
+    <strong>
+     3. Index Predictor Definition and Building
+    </strong>
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="j04.html">
+   <font color="navy">
+    <strong>
+     4. Statistical Downscaling Method
+    </strong>
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="j05.html">
+   <font color="navy">
+    <strong>
+     5. Additional Predictand Variables
+    </strong>
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="j06.html">
+   <font color="navy">
+    <strong>
+     6. Model Validation
+    </strong>
+   </font>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <font color="navy">
+    <strong>
+     7. Seasonal Forecast
+    </strong>
+   </font>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/j07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/AndreaPozo/Seasonal_Forecast_TCs_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/AndreaPozo/Seasonal_Forecast_TCs_book/issues/new?title=Issue%20on%20page%20%2Fj07.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/AndreaPozo/Seasonal_Forecast_TCs_book/master?urlpath=tree/practice/j07.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-royalblue-7-1-forecast-data-validation-font-a-name-d-a">
+   <font color="royalblue">
+    <strong>
+     7.1 Forecast data validation
+    </strong>
+   </font>
+   <a name="d">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-royalblue-7-3-forecast-application-font-a-name-fapp-a">
+   <font color="royalblue">
+    <strong>
+     7.3 Forecast application
+    </strong>
+   </font>
+   <a name="fapp">
+   </a>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># common</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1">#lib</span>
+<span class="kn">from</span> <span class="nn">lib.forecast_methodology</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">lib.forecast_plots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">lib.calibration</span> <span class="kn">import</span> <span class="n">ds_timeline</span>
+<span class="kn">from</span> <span class="nn">lib.extract_tcs</span> <span class="kn">import</span> <span class="n">tcs_count_season</span><span class="p">,</span> <span class="n">counting_ds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">e10a6addd1a0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> 
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1">#lib</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">lib.forecast_methodology</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">lib.forecast_plots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">lib.calibration</span> <span class="kn">import</span> <span class="n">ds_timeline</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;lib.forecast_methodology&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path_p</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;/home/administrador/Documentos/seasonal/seasonal_forecast/new/&#39;</span>
+<span class="n">path_f</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;/media/administrador/SAMSUNG/seasonal_forecast/data/CFS/forecast_past_data/&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;df_coordinates_pmin_sst_mld_2019.pkl&#39;</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;xs_index_vars_19822019_2deg_new.nc&#39;</span><span class="p">)</span>
+<span class="n">xds_kma</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;kma_model/xds_kma_index_vars_1b.nc&#39;</span><span class="p">)</span>
+<span class="n">xs_dwt_counts</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;kma_model/xds_count_tcs3.nc&#39;</span><span class="p">)</span>
+<span class="n">xs_dwt_counts_964</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;kma_model/xds_count_tcs3_964.nc&#39;</span><span class="p">)</span>
+<span class="n">xds_timeM</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;xds_timeM3.nc&#39;</span><span class="p">)</span>
+<span class="n">xds_PCA</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">path_p</span><span class="o">+</span><span class="s1">&#39;xds_PCA.nc&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div class="section" id="font-color-navy-7-seasonal-forecast-font">
+<h1><font color='navy'><strong>7. Seasonal Forecast</strong> </font><a class="headerlink" href="#font-color-navy-7-seasonal-forecast-font" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>7.1 <a class="reference external" href="#d">Forecast data validation</a><br> <br>
+7.2 <a class="reference external" href="#fapp">Forecast application</a><br> <br>
+7.3 <a class="reference external" href="#look">Forecast outlook from different agencies</a><br> <br><br> <br></p>
+</div></blockquote>
+<br />
+<br />
+<div class="section" id="font-color-royalblue-7-1-forecast-data-validation-font-a-name-d-a">
+<h2><font color='royalblue'><strong>7.1 Forecast data validation</strong></font> <a name="d"></a><a class="headerlink" href="#font-color-royalblue-7-1-forecast-data-validation-font-a-name-d-a" title="Permalink to this headline">¶</a></h2>
+<br /><p><strong>After building and validating the model it will be applied to forecast TCs seasons from previous years to validate this data.</strong>
+<br></p>
+<p><strong>The forecasts from the first day of August, September, October and November. There are four runs per day of the model (00:00,06:00,12:00,18:00 hours).</strong></p>
+<br> 
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: rgb(0,0,0); background-color: #fcf8e3; border-color: #faebcc; ">
+<p><strong>Steps:</strong>
+<br></p>
+<ul class="simple">
+<li><p><strong>1.</strong> Download <a href="https://www.ncei.noaa.gov/data/climate-forecast-system/access/operational-9-month-forecast/time-series/" target="_blank">from CFS 9-month operational forecast</a> and preprocess (file conversion and resolution interpolation) SST and MLD data.</p></li>
+<li><p><strong>2.</strong> Generation of the index predictor based on the index function obtained at the calibration period.</p></li>
+<li><p><strong>3.</strong> The fitted Principal Component Analysis for the calibration is used to predict the index principal components in that same temporal-spatial space.</p></li>
+<li><p><strong>4.</strong> The predicted PCs are assigned to the best match unit group from the fitted K-means clustering -&gt; based on the index predictor a DWT is assigned to each day.</p></li>
+<li><p><strong>5.</strong> From the DWT the expected mean number of TCs in 8x8º cells map in the target area is known and the monthly aggregated maps are generated.</p></li>
+</ul>
+<br>    
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="c1">#your path to the datasets containing the MLD and SST data of the season</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">path_f</span><span class="o">+</span><span class="s1">&#39;season_18_19/&#39;</span>
+
+<span class="c1">#year when the season starts</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2018</span>
+
+<span class="n">process_season_with_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">path_p</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xds_PCA</span><span class="p">,</span><span class="n">xs_dwt_counts</span><span class="p">,</span><span class="n">xs_dwt_counts_964</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forecast month 8
+Hour 0
+Unique DWTs(array([ 1,  2,  3,  4,  5,  6,  8,  9, 10, 11, 13, 16, 22, 24, 29, 33, 34,
+       39, 45, 48, 49]), array([ 3, 34, 15,  5,  9, 11,  5,  2,  8,  2, 65,  3, 18,  2, 14, 10, 15,
+        3,  2, 17, 62]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seasons</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+<span class="n">list_fs</span><span class="p">,</span> <span class="n">list_fs_c3</span><span class="p">,</span><span class="n">list_mfs</span><span class="p">,</span><span class="n">list_mfs_c3</span><span class="p">,</span> <span class="n">list_stdfs</span><span class="p">,</span> <span class="n">list_stdfs_c3</span> <span class="o">=</span> <span class="n">variables_plot_season_means</span><span class="p">(</span><span class="n">path_f</span><span class="p">,</span> <span class="n">seasons</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+12
+13
+14
+15
+16
+17
+18
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig8_full_seasons</span> <span class="o">=</span> <span class="n">plot_season_means</span><span class="p">(</span><span class="n">ds4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="n">list_fs</span><span class="p">,</span> <span class="n">list_fs_c3</span><span class="p">,</span><span class="n">list_mfs</span><span class="p">,</span><span class="n">list_mfs_c3</span><span class="p">,</span> <span class="n">list_stdfs</span><span class="p">,</span> <span class="n">list_stdfs_c3</span><span class="p">,</span><span class="n">xds_timeM</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/j07_10_0.png" src="_images/j07_10_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xds_timeline</span> <span class="o">=</span> <span class="n">ds_timeline</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">xs_dwt_counts</span><span class="p">,</span><span class="n">xs_dwt_counts_964</span><span class="p">,</span><span class="n">xds_kma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>FORECAST vs MODEL DWTs probabilities</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#bmus from the calibration period of the methodology, from 01/1982 to 12/2019</span>
+<span class="n">ds_bmus</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">({</span>
+    <span class="s1">&#39;bmus&#39;</span><span class="p">:</span> <span class="p">((</span><span class="s1">&#39;time&#39;</span><span class="p">),</span> <span class="n">xds_kma</span><span class="o">.</span><span class="n">bmus</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
+
+<span class="p">},{</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">xds_kma</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ds_bmus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.Dataset&gt;
+Dimensions:  (time: 13879)
+Coordinates:
+  * time     (time) datetime64[ns] 1982-01-01 1982-01-02 ... 2019-12-31
+Data variables:
+    bmus     (time) int64 26 26 23 23 23 23 10 26 26 ... 24 24 24 24 24 24 24 24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s11</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="n">std11</span><span class="p">,</span><span class="n">s12</span><span class="p">,</span><span class="n">m12</span><span class="p">,</span><span class="n">std12</span><span class="p">,</span><span class="n">s13</span><span class="p">,</span><span class="n">m13</span><span class="p">,</span><span class="n">std13</span><span class="p">,</span><span class="n">s14</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="n">std14</span><span class="p">,</span><span class="n">s15</span><span class="p">,</span><span class="n">m15</span><span class="p">,</span><span class="n">std15</span><span class="p">,</span><span class="n">s16</span><span class="p">,</span><span class="n">m16</span><span class="p">,</span><span class="n">std16</span><span class="p">,</span><span class="n">s17</span><span class="p">,</span><span class="n">m17</span><span class="p">,</span><span class="n">std17</span><span class="p">,</span><span class="n">s18</span><span class="p">,</span><span class="n">m18</span><span class="p">,</span><span class="n">std18</span><span class="p">,</span><span class="n">s19</span><span class="p">,</span><span class="n">m19</span><span class="p">,</span><span class="n">std19</span><span class="p">,</span><span class="n">list_metm</span><span class="p">,</span><span class="n">list_smet</span> <span class="o">=</span> <span class="n">variables_dwt_forecast_plot</span><span class="p">(</span><span class="n">ds_bmus</span><span class="p">,</span><span class="mi">2011</span><span class="p">,</span><span class="n">path_f</span><span class="o">+</span><span class="s1">&#39;season_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig_dwt</span> <span class="o">=</span> <span class="n">dwt_forecast_plot</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="n">s11</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="n">std11</span><span class="p">,</span><span class="n">s12</span><span class="p">,</span><span class="n">m12</span><span class="p">,</span><span class="n">std12</span><span class="p">,</span><span class="n">s13</span><span class="p">,</span><span class="n">m13</span><span class="p">,</span><span class="n">std13</span><span class="p">,</span><span class="n">s14</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="n">std14</span><span class="p">,</span><span class="n">s15</span><span class="p">,</span><span class="n">m15</span><span class="p">,</span><span class="n">std15</span><span class="p">,</span><span class="n">s16</span><span class="p">,</span><span class="n">m16</span><span class="p">,</span><span class="n">std16</span><span class="p">,</span><span class="n">s17</span><span class="p">,</span><span class="n">m17</span><span class="p">,</span><span class="n">std17</span><span class="p">,</span><span class="n">s18</span><span class="p">,</span><span class="n">m18</span><span class="p">,</span><span class="n">std18</span><span class="p">,</span><span class="n">s19</span><span class="p">,</span><span class="n">m19</span><span class="p">,</span><span class="n">std19</span><span class="p">,</span><span class="n">list_metm</span><span class="p">,</span><span class="n">list_smet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/j07_15_0.png" src="_images/j07_15_0.png" />
+</div>
+</div>
+<br> 
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: rgb(0,0,0); background-color: #fcf8e3; border-color: #faebcc; ">
+<p><strong>Recall</strong>:
+<br></p>
+<ul class="simple">
+<li><p>The model generally performs well when estimating the expected TC activity and intensity.</p></li>
+<li><p>However rather than reproducing exactly the historical TCs tracks it shows higher number of expected TCs in the TC path and also in the surroundings (overstimation)</p></li>
+<li><p>In puntctual cases where the number of historical TC tracks in a cell is greater than 3 there is an understimation.</p></li>
+<li><p>When a TC is very intense or very close in dates to the previous or following month it leaves its footprint.
+<br>
+<br></p></li>
+</ul>
+<p><strong>Forecast data</strong>:</p>
+<ul class="simple">
+<li><p>Much greater uncertainty -&gt; DWTs probability is greatly shared and therefore more extended predictand maps.</p></li>
+<li><p>The weakness of the model are enhanced.
+<br></p></li>
+</ul>
+<p><strong>Although the model has been proven to perform very well, the accuracy and reliability of the forecast greatly depends of the quality of the forecast data, which has also been proven to be quite improvable.</strong></p>
+</div><br />
+</div>
+<div class="section" id="font-color-royalblue-7-3-forecast-application-font-a-name-fapp-a">
+<h2><font color='royalblue'><strong>7.3 Forecast application</strong></font> <a name="fapp"></a><a class="headerlink" href="#font-color-royalblue-7-3-forecast-application-font-a-name-fapp-a" title="Permalink to this headline">¶</a></h2>
+<br /><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your path to the datasets containing the MLD and SST data</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;/media/administrador/SAMSUNG/seasonal_forecast/data/CFS/forecast_01_04_2021/&#39;</span>
+
+<span class="c1">#year and month of the forecast day</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2021</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">process_day_with_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">path_p</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">xds_PCA</span><span class="p">,</span><span class="n">xs_dwt_counts</span><span class="p">,</span><span class="n">xs_dwt_counts_964</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forecast month 4
+Hour 0
+Unique DWTs(array([ 1,  4,  5,  7, 11, 13, 16, 20, 22, 29, 33, 34, 35, 40, 41, 45, 46,
+       47, 48, 49]), array([ 4, 16, 13, 21, 10, 19, 13,  8, 24, 25,  1, 19,  3, 11, 37,  8, 67,
+        3,  4,  1]))
+xds_timeline_M4_f1.nc
+xs_M4_f1.nc
+Hour 6
+Unique DWTs(array([ 1,  4,  5,  7, 11, 13, 16, 29, 33, 34, 39, 41, 43, 44, 48, 49]), array([ 6, 20, 12, 13, 21, 53, 17,  1, 12, 34, 10,  5,  6,  1, 76, 20]))
+xds_timeline_M4_f2.nc
+xs_M4_f2.nc
+Hour 12
+Unique DWTs(array([ 1,  4,  5,  6, 11, 13, 16, 20, 22, 29, 34, 38, 39, 40, 41, 46, 47,
+       48, 49]), array([ 3, 13, 19,  1, 14, 33, 15,  4,  6, 36, 19, 11,  7,  2, 16,  9,  2,
+       96,  1]))
+xds_timeline_M4_f3.nc
+xs_M4_f3.nc
+Hour 18
+Unique DWTs(array([ 1,  4,  5,  7, 10, 11, 13, 16, 18, 20, 22, 25, 29, 32, 33, 34, 38,
+       39, 41, 46, 48]), array([ 3, 24,  9,  4,  1,  2, 17, 10, 15,  7, 13,  1,  5, 19, 12, 40, 10,
+        1, 15,  6, 92]))
+xds_timeline_M4_f4.nc
+xs_M4_f4.nc
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_day</span><span class="p">,</span> <span class="n">mean_day_c3</span><span class="p">,</span> <span class="n">mean_day_full_season</span><span class="p">,</span><span class="n">mean_day_full_season_c3</span><span class="p">,</span><span class="n">ds</span> <span class="o">=</span> <span class="n">variables_plot_forecast</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="mi">2021</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">fig8_f</span> <span class="o">=</span> <span class="n">plot_forecast</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.39</span><span class="p">,</span><span class="n">mean_day</span><span class="p">,</span> <span class="n">mean_day_c3</span><span class="p">,</span> <span class="n">mean_day_full_season</span><span class="p">,</span><span class="n">mean_day_full_season_c3</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/j07_20_0.png" src="_images/j07_20_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="j06.html" title="previous page"><font color='navy'><strong>6. Model Validation</strong> </font></a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Andrea Pozo<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
